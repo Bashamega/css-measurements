@@ -1,0 +1,28 @@
+{
+  "name": "css-measurements",
+  "version": "0.0.1",
+  "description": "Type-safe CSS units — straight from the spec to your code.",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bashamega/css-measurements.git"
+  },
+  "keywords": [
+    "css",
+    "mdn",
+    "specs",
+    "measurements"
+  ],
+  "author": "Bashamega",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Bashamega/css-measurements/issues"
+  },
+  "homepage": "https://github.com/Bashamega/css-measurements#readme",
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  }
+}
