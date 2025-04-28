@@ -1,5 +1,4 @@
 import { readFileSync } from "fs";
-import slugify from "slugify"
 
 export function parseMarkdown(markdownPath: URL) {
   const content = readFileSync(markdownPath, 'utf-8');
@@ -25,11 +24,17 @@ export function parseMarkdown(markdownPath: URL) {
   for (const line of lines) {
     if (line.startsWith('### ')) {
       flushTable();
-      currentHeading = line.slice(3).trim();
+      currentHeading = line.slice(3).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+        index === 0 ? match.toLowerCase() : match.toUpperCase()
+      )
+        .replace(/\s+/g, '');
       currentSubHeading = null;
     } else if (line.startsWith('#### ')) {
       flushTable();
-      currentSubHeading = line.slice(4).trim();
+      currentSubHeading = line.slice(4).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
+        index === 0 ? match.toLowerCase() : match.toUpperCase()
+      )
+        .replace(/\s+/g, '');
     } else if (line.startsWith('|') && line.includes('|')) {
       tableLines.push(line.trim());
     } else if (line.trim() === '' && tableLines.length > 0) {
@@ -60,12 +65,12 @@ function parseTable(lines: string[]): any[] {
 
       if (header.toLowerCase() !== "unit") {
         descriptions.push(value); // Add to descriptions if header is not 'unit'
-        return ;
+        return;
       }
 
-      entry[slugify(header, {lower: true})] = value;
+      entry[header.toLowerCase()] = value;
     });
 
-    return {...entry, descriptions};
+    return { ...entry, descriptions };
   });
 }

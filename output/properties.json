@@ -1,6 +1,6 @@
 {
-  "Distance units": {
-    "Local font-relative lengths": [
+  "distanceUnits": {
+    "localFont-RelativeLengths": [
       {
         "unit": "cap",
         "descriptions": [
@@ -38,7 +38,7 @@
         ]
       }
     ],
-    "Root font-relative lengths": [
+    "rootFont-RelativeLengths": [
       {
         "unit": "rcap",
         "descriptions": [
@@ -76,7 +76,7 @@
         ]
       }
     ],
-    "Viewport units": [
+    "viewportUnits": [
       {
         "unit": "dvh",
         "descriptions": [
@@ -150,7 +150,7 @@
         ]
       }
     ],
-    "Container units": [
+    "containerUnits": [
       {
         "unit": "cqb",
         "descriptions": [
@@ -189,7 +189,7 @@
       }
     ]
   },
-  "Absolute length units": [
+  "absoluteLengthUnits": [
     {
       "unit": "cm",
       "descriptions": [
