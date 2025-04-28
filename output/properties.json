@@ -1,6 +1,6 @@
 {
   "distanceUnits": {
-    "localFont-RelativeLengths": [
+    "localFontRelativeLengths": [
       {
         "unit": "cap",
         "descriptions": [
@@ -38,7 +38,7 @@
         ]
       }
     ],
-    "rootFont-RelativeLengths": [
+    "rootFontRelativeLengths": [
       {
         "unit": "rcap",
         "descriptions": [

@@ -27,6 +27,7 @@ export function parseMarkdown(markdownPath: URL) {
       currentHeading = line.slice(3).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
         index === 0 ? match.toLowerCase() : match.toUpperCase()
       )
+        .replace("-", "")
         .replace(/\s+/g, '');
       currentSubHeading = null;
     } else if (line.startsWith('#### ')) {
@@ -34,6 +35,7 @@ export function parseMarkdown(markdownPath: URL) {
       currentSubHeading = line.slice(4).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
         index === 0 ? match.toLowerCase() : match.toUpperCase()
       )
+        .replace("-", "")
         .replace(/\s+/g, '');
     } else if (line.startsWith('|') && line.includes('|')) {
       tableLines.push(line.trim());
