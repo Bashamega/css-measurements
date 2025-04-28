@@ -1,0 +1,243 @@
+{
+  "Distance units": {
+    "Local font-relative lengths": [
+      {
+        "unit": "cap",
+        "descriptions": [
+          "Cap height (the nominal height of capital letters) of the element's font."
+        ]
+      },
+      {
+        "unit": "ch",
+        "descriptions": [
+          "Average character advance of a narrow glyph in the element's font, as represented by the \"0\" (ZERO, U+0030) glyph."
+        ]
+      },
+      {
+        "unit": "em",
+        "descriptions": [
+          "Font size of the element's font."
+        ]
+      },
+      {
+        "unit": "ex",
+        "descriptions": [
+          "x-height of the element's font."
+        ]
+      },
+      {
+        "unit": "ic",
+        "descriptions": [
+          "Average character advance of a full-width glyph in the element's font, as represented by the \"水\" (CJK water ideograph, U+6C34) glyph."
+        ]
+      },
+      {
+        "unit": "lh",
+        "descriptions": [
+          "Line height of the element."
+        ]
+      }
+    ],
+    "Root font-relative lengths": [
+      {
+        "unit": "rcap",
+        "descriptions": [
+          "Cap height (the nominal height of capital letters) of the root element's font."
+        ]
+      },
+      {
+        "unit": "rch",
+        "descriptions": [
+          "Average character advance of a narrow glyph in the root element's font, as represented by the \"0\" (ZERO, U+0030) glyph."
+        ]
+      },
+      {
+        "unit": "rem",
+        "descriptions": [
+          "Font size of the root element's font."
+        ]
+      },
+      {
+        "unit": "rex",
+        "descriptions": [
+          "x-height of the root element's font."
+        ]
+      },
+      {
+        "unit": "ric",
+        "descriptions": [
+          "Average character advance of a full-width glyph in the root element's font, as represented by the \"水\" (CJK water ideograph, U+6C34) glyph."
+        ]
+      },
+      {
+        "unit": "rlh",
+        "descriptions": [
+          "Line height of the root element."
+        ]
+      }
+    ],
+    "Viewport units": [
+      {
+        "unit": "dvh",
+        "descriptions": [
+          "1% of the [dynamic](/en-US/docs/Web/CSS/length#dynamic_viewport_units) viewport's height."
+        ]
+      },
+      {
+        "unit": "dvw",
+        "descriptions": [
+          "1% of the [dynamic](/en-US/docs/Web/CSS/length#dynamic_viewport_units) viewport's width."
+        ]
+      },
+      {
+        "unit": "lvh",
+        "descriptions": [
+          "1% of the [large](/en-US/docs/Web/CSS/length#large_viewport_units) viewport's height."
+        ]
+      },
+      {
+        "unit": "lvw",
+        "descriptions": [
+          "1% of the [large](/en-US/docs/Web/CSS/length#large_viewport_units) viewport's width."
+        ]
+      },
+      {
+        "unit": "svh",
+        "descriptions": [
+          "1% of the [small](/en-US/docs/Web/CSS/length#small_viewport_units) viewport's height."
+        ]
+      },
+      {
+        "unit": "svw",
+        "descriptions": [
+          "1% of the [small](/en-US/docs/Web/CSS/length#small_viewport_units) viewport's width."
+        ]
+      },
+      {
+        "unit": "vb",
+        "descriptions": [
+          "1% of viewport's size in the root element's [block axis](/en-US/docs/Glossary/Flow_relative_values)."
+        ]
+      },
+      {
+        "unit": "vh",
+        "descriptions": [
+          "1% of viewport's height."
+        ]
+      },
+      {
+        "unit": "vi",
+        "descriptions": [
+          "1% of viewport's size in the root element's [inline axis](/en-US/docs/Glossary/Flow_relative_values)."
+        ]
+      },
+      {
+        "unit": "vmax",
+        "descriptions": [
+          "1% of viewport's larger dimension."
+        ]
+      },
+      {
+        "unit": "vmin",
+        "descriptions": [
+          "1% of viewport's smaller dimension."
+        ]
+      },
+      {
+        "unit": "vw",
+        "descriptions": [
+          "1% of viewport's width."
+        ]
+      }
+    ],
+    "Container units": [
+      {
+        "unit": "cqb",
+        "descriptions": [
+          "1% of a query container's block size"
+        ]
+      },
+      {
+        "unit": "cqh",
+        "descriptions": [
+          "1% of a query container's height"
+        ]
+      },
+      {
+        "unit": "cqi",
+        "descriptions": [
+          "1% of a query container's inline size"
+        ]
+      },
+      {
+        "unit": "cqmax",
+        "descriptions": [
+          "The larger value of cqi or cqb"
+        ]
+      },
+      {
+        "unit": "cqmin",
+        "descriptions": [
+          "The smaller value of cqi or cqb"
+        ]
+      },
+      {
+        "unit": "cqw",
+        "descriptions": [
+          "1% of a query container's width"
+        ]
+      }
+    ]
+  },
+  "Absolute length units": [
+    {
+      "unit": "cm",
+      "descriptions": [
+        "Centimeters",
+        "1cm = 96px/2.54"
+      ]
+    },
+    {
+      "unit": "in",
+      "descriptions": [
+        "Inches",
+        "1in = 2.54cm = 96px"
+      ]
+    },
+    {
+      "unit": "mm",
+      "descriptions": [
+        "Millimeters",
+        "1mm = 1/10th of 1cm"
+      ]
+    },
+    {
+      "unit": "pc",
+      "descriptions": [
+        "Picas",
+        "1pc = 1/6th of 1in"
+      ]
+    },
+    {
+      "unit": "pt",
+      "descriptions": [
+        "Points",
+        "1pt = 1/72th of 1in"
+      ]
+    },
+    {
+      "unit": "px",
+      "descriptions": [
+        "Pixels",
+        "1px = 1/96th of 1in"
+      ]
+    },
+    {
+      "unit": "Q",
+      "descriptions": [
+        "Quarter-millimeters",
+        "1Q = 1/40th of 1cm"
+      ]
+    }
+  ]
+}
