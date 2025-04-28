@@ -1,9 +1,13 @@
 import { readFileSync } from "fs";
 
+type ParsedTable = {
+  [key: string]: string | string[] | ParsedTable[] | ParsedTable; // A more specific structure for parsed data
+};
+
 export function parseMarkdown(markdownPath: URL) {
   const content = readFileSync(markdownPath, 'utf-8');
   const lines = content.split('\n');
-  const result: any = {};
+  const result: ParsedTable = {};
   let currentHeading: string | null = null;
   let currentSubHeading: string | null = null;
   let tableLines: string[] = [];
@@ -12,8 +16,10 @@ export function parseMarkdown(markdownPath: URL) {
     if (tableLines.length > 0 && currentHeading) {
       const parsedTable = parseTable(tableLines);
       if (currentSubHeading) {
+        // Ensure the result[currentHeading] is initialized as an object if needed
         result[currentHeading] = result[currentHeading] || {};
-        result[currentHeading][currentSubHeading] = parsedTable;
+        // Assert that result[currentHeading] is a ParsedTable so we can safely index it with currentSubHeading
+        (result[currentHeading] as ParsedTable)[currentSubHeading] = parsedTable;
       } else {
         result[currentHeading] = parsedTable;
       }
@@ -52,14 +58,15 @@ export function parseMarkdown(markdownPath: URL) {
 }
 
 // Helper to parse a markdown table into objects
-function parseTable(lines: string[]): any[] {
+function parseTable(lines: string[]): ParsedTable[] {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [headerLine, separatorLine, ...rowLines] = lines;
   const headers = headerLine.split('|').map(h => h.trim()).filter(Boolean);
 
   return rowLines.map(row => {
     const columns = row.split('|').map(c => c.trim()).filter(item => item !== "");
 
-    const entry: any = {};
+    const entry: ParsedTable = {};
     const descriptions: string[] = [];  // Array to store headers that are not 'unit'
     headers.forEach((header, index) => {
       let value = columns[index] || ""; // handle missing column data
