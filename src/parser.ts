@@ -1,10 +1,6 @@
 import { readFileSync } from "fs";
 
-type ParsedTable = {
-  [key: string]: string | string[] | ParsedTable[] | ParsedTable; // A more specific structure for parsed data
-};
-
-export function parseMarkdown(markdownPath: URL) {
+export function parseMarkdown(markdownPath: URL): ParsedTable {
   const content = readFileSync(markdownPath, 'utf-8');
   const lines = content.split('\n');
   const result: ParsedTable = {};
