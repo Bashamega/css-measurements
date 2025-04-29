@@ -1,0 +1,1 @@
+type rootFontRelativeLengths = "rcap" | "rch" | "rem" | "rex" | "ric" | "rlh"
