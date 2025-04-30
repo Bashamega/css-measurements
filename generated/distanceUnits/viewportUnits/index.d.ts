@@ -1,1 +1,0 @@
-type viewportUnits = "dvh" | "dvw" | "lvh" | "lvw" | "svh" | "svw" | "vb" | "vh" | "vi" | "vmax" | "vmin" | "vw"

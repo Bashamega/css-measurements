@@ -26,19 +26,11 @@ export function parseMarkdown(markdownPath: URL): ParsedTable {
   for (const line of lines) {
     if (line.startsWith('### ')) {
       flushTable();
-      currentHeading = line.slice(3).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
-        index === 0 ? match.toLowerCase() : match.toUpperCase()
-      )
-        .replace("-", "")
-        .replace(/\s+/g, '');
+      currentHeading = toPascalCase(line.slice(4).trim());
       currentSubHeading = null;
     } else if (line.startsWith('#### ')) {
       flushTable();
-      currentSubHeading = line.slice(4).trim().replace(/([a-z0-9])([A-Z])/g, '$1$2').toLowerCase().replace(/(?:^\w|[A-Z]|\b\w|\s+)/g, (match, index) =>
-        index === 0 ? match.toLowerCase() : match.toUpperCase()
-      )
-        .replace("-", "")
-        .replace(/\s+/g, '');
+      currentSubHeading = toPascalCase(line.slice(5).trim());
     } else if (line.startsWith('|') && line.includes('|')) {
       tableLines.push(line.trim());
     } else if (line.trim() === '' && tableLines.length > 0) {
@@ -63,13 +55,13 @@ function parseTable(lines: string[]): ParsedTable[] {
     const columns = row.split('|').map(c => c.trim()).filter(item => item !== "");
 
     const entry: ParsedTable = {};
-    const descriptions: string[] = [];  // Array to store headers that are not 'unit'
+    const descriptions: string[] = [];
     headers.forEach((header, index) => {
-      let value = columns[index] || ""; // handle missing column data
-      value = value.replace(/`/g, "").trim(); // remove backticks
+      let value = columns[index] || "";
+      value = value.replace(/`/g, "").trim();
 
       if (header.toLowerCase() !== "unit") {
-        descriptions.push(value); // Add to descriptions if header is not 'unit'
+        descriptions.push(value);
         return;
       }
 
@@ -78,4 +70,13 @@ function parseTable(lines: string[]): ParsedTable[] {
 
     return { ...entry, descriptions };
   });
+}
+
+function toPascalCase(str: string): string {
+  return str
+    .replace(/[^a-zA-Z0-9 ]/g, ' ') // Remove non-alphanumerics
+    .replace(/\s+/g, ' ')           // Normalize spaces
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join('');
 }

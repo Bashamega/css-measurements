@@ -1,0 +1,1 @@
+type LocalFontRelativeLengths = "cap" | "ch" | "em" | "ex" | "ic" | "lh"
