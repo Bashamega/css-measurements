@@ -4,7 +4,7 @@
   "description": "Type-safe CSS units — straight from the spec to your code.",
   "main": "lib/index.js",
   "scripts": {
-    "generate": "tsc && node ./lib/main.js",
+    "generate": "tsc && node ./lib/build/main.js",
     "lint": "eslint --max-warnings 0 src && tsc -p deploy/jsconfig.json",
     "lint-fix": "eslint --max-warnings 0 src --fix"
   },
