@@ -1,7 +1,7 @@
-import { readFileSync } from "fs";
+import { readFile } from "fs/promises";
 
-export function parseMarkdown(markdownPath: URL): ParsedTable {
-  const content = readFileSync(markdownPath, 'utf-8');
+export async function parseMarkdown(markdownPath: URL): Promise<ParsedTable> {
+  const content = await readFile(markdownPath, 'utf-8');
   const lines = content.split('\n');
   const result: ParsedTable = {};
   let currentHeading: string | null = null;
