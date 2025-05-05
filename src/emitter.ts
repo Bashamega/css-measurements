@@ -29,4 +29,9 @@ export function emitter(obj: ParsedTable, basePath: URL) {
       emitter(measurements, dir);
     }
   }
+  const keys = Object.keys(obj)
+  const pathParts = basePath.pathname.split('/');
+  const folder = pathParts[pathParts.length - 2];
+  const content = `type ${folder === "generated" ? "CssMeasurements" : folder + "Measurements"} = ${keys.map(key => folder === "generated" ? key + "Measurements" : key).join(" | ")}`;
+  saveIndexFile(content, basePath)
 }
