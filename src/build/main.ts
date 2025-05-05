@@ -3,15 +3,15 @@ import { parseMarkdown } from "./parser.js";
 import { writeFileSync } from "fs";
 
 const basePath = new URL(
-    "../mdn-content/files/en-us/web/css/css_values_and_units/numeric_data_types/index.md",
+    "../../mdn-content/files/en-us/web/css/css_values_and_units/numeric_data_types/index.md",
     import.meta.url
 );
 const outputFilePath = new URL(
-    "../output/properties.json",
+    "../../output/properties.json",
     import.meta.url
 );
 const generatedPath = new URL(
-    "../generated/",
+    "../../generated/",
     import.meta.url
 );
 

@@ -1,20 +1,8 @@
-import * as fs from 'fs';
+import saveIndexFile from "../utils/saveFile.js";
 
 type ParsedTable = {
   [key: string]: any;
 };
-
-function ensureDir(dir: URL) {
-  if (!fs.existsSync(dir)) {
-    fs.mkdirSync(dir, { recursive: true });
-  }
-}
-function saveIndexFile(units: string, dir: URL) {
-  ensureDir(dir);
-  const filePath = new URL('index.d.ts', dir);
-  fs.writeFileSync(filePath, units, 'utf8');
-  console.log(`Saved: ${filePath.pathname}`);
-}
 
 export function emitter(obj: ParsedTable, basePath: URL) {
   for (const key in obj) {
