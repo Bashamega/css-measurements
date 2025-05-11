@@ -1,1 +1,1 @@
-type ContainerUnits = "cqb" | "cqh" | "cqi" | "cqmax" | "cqmin" | "cqw"
+export type ContainerUnits = "cqb" | "cqh" | "cqi" | "cqmax" | "cqmin" | "cqw"

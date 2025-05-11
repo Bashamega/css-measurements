@@ -1,1 +1,1 @@
-type CssMeasurements = DistanceUnitsMeasurements | AbsoluteLengthUnitsMeasurements
+export type CssMeasurements = DistanceUnitsMeasurements | AbsoluteLengthUnitsMeasurements

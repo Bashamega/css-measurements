@@ -1,1 +1,1 @@
-type AbsoluteLengthUnits = "cm" | "in" | "mm" | "pc" | "pt" | "px" | "Q"
+export type AbsoluteLengthUnits = "cm" | "in" | "mm" | "pc" | "pt" | "px" | "Q"

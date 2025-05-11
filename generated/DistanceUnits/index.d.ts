@@ -1,1 +1,1 @@
-type DistanceUnitsMeasurements = LocalFontRelativeLengths | RootFontRelativeLengths | ViewportUnits | ContainerUnits
+export type DistanceUnitsMeasurements = LocalFontRelativeLengths | RootFontRelativeLengths | ViewportUnits | ContainerUnits

@@ -1,1 +1,1 @@
-type RootFontRelativeLengths = "rcap" | "rch" | "rem" | "rex" | "ric" | "rlh"
+export type RootFontRelativeLengths = "rcap" | "rch" | "rem" | "rex" | "ric" | "rlh"
