@@ -1,0 +1,37 @@
+{
+    "name": "@css-m/xyz-kebab",
+    "version": "versionNumber",
+    "description": "CSS definitions for xyz-normal",
+    "main": "",
+    "types": "index.d.ts",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Bashamega/css-measurements/"
+    },
+    "keywords": [
+        "css",
+        "mdn",
+        "specs",
+        "measurements"
+    ],
+    "author": "CSS Measurements",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/Bashamega/css-measurements/issues"
+    },
+    "homepage": "https://github.com/Bashamega/css-measurements#readme",
+    "typesVersions": {
+        "<=5.5": {
+            "*": [
+                "ts5.5/*"
+            ]
+        },
+        "<=5.6": {
+            "*": [
+                "ts5.6/*"
+            ]
+        }
+    },
+    "scripts": {},
+    "dependencies": {}
+}
