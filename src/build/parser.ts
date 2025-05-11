@@ -1,8 +1,8 @@
 import { readFile } from "fs/promises";
 
 export async function parseMarkdown(markdownPath: URL): Promise<ParsedTable> {
-  const content = await readFile(markdownPath, 'utf-8');
-  const lines = content.split('\n');
+  const content = await readFile(markdownPath, "utf-8");
+  const lines = content.split("\n");
   const result: ParsedTable = {};
   let currentHeading: string | null = null;
   let currentSubHeading: string | null = null;
@@ -15,7 +15,8 @@ export async function parseMarkdown(markdownPath: URL): Promise<ParsedTable> {
         // Ensure the result[currentHeading] is initialized as an object if needed
         result[currentHeading] = result[currentHeading] || {};
         // Assert that result[currentHeading] is a ParsedTable so we can safely index it with currentSubHeading
-        (result[currentHeading] as ParsedTable)[currentSubHeading] = parsedTable;
+        (result[currentHeading] as ParsedTable)[currentSubHeading] =
+          parsedTable;
       } else {
         result[currentHeading] = parsedTable;
       }
@@ -24,16 +25,16 @@ export async function parseMarkdown(markdownPath: URL): Promise<ParsedTable> {
   };
 
   for (const line of lines) {
-    if (line.startsWith('### ')) {
+    if (line.startsWith("### ")) {
       flushTable();
       currentHeading = toPascalCase(line.slice(4).trim());
       currentSubHeading = null;
-    } else if (line.startsWith('#### ')) {
+    } else if (line.startsWith("#### ")) {
       flushTable();
       currentSubHeading = toPascalCase(line.slice(5).trim());
-    } else if (line.startsWith('|') && line.includes('|')) {
+    } else if (line.startsWith("|") && line.includes("|")) {
       tableLines.push(line.trim());
-    } else if (line.trim() === '' && tableLines.length > 0) {
+    } else if (line.trim() === "" && tableLines.length > 0) {
       // End of table on blank line
       flushTable();
     }
@@ -49,10 +50,16 @@ export async function parseMarkdown(markdownPath: URL): Promise<ParsedTable> {
 function parseTable(lines: string[]): ParsedTable[] {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [headerLine, separatorLine, ...rowLines] = lines;
-  const headers = headerLine.split('|').map(h => h.trim()).filter(Boolean);
+  const headers = headerLine
+    .split("|")
+    .map((h) => h.trim())
+    .filter(Boolean);
 
-  return rowLines.map(row => {
-    const columns = row.split('|').map(c => c.trim()).filter(item => item !== "");
+  return rowLines.map((row) => {
+    const columns = row
+      .split("|")
+      .map((c) => c.trim())
+      .filter((item) => item !== "");
 
     const entry: ParsedTable = {};
     const descriptions: string[] = [];
@@ -74,9 +81,9 @@ function parseTable(lines: string[]): ParsedTable[] {
 
 function toPascalCase(str: string): string {
   return str
-    .replace(/[^a-zA-Z0-9 ]/g, ' ') // Remove non-alphanumerics
-    .replace(/\s+/g, ' ')           // Normalize spaces
-    .split(' ')
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
-    .join('');
+    .replace(/[^a-zA-Z0-9 ]/g, " ") // Remove non-alphanumerics
+    .replace(/\s+/g, " ") // Normalize spaces
+    .split(" ")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+    .join("");
 }

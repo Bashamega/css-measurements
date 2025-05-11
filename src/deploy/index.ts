@@ -1,4 +1,11 @@
-import { access, copyFile, cp, readdir, readFile, writeFile } from "fs/promises";
+import {
+  access,
+  copyFile,
+  cp,
+  readdir,
+  readFile,
+  writeFile,
+} from "fs/promises";
 import { constants } from "fs";
 import { getVersion } from "./getVersion.js";
 
@@ -8,8 +15,10 @@ const templatePath = new URL("../../template/", import.meta.url);
 const license = new URL("License", templatePath);
 const packageJson = new URL("package.json", templatePath);
 
-const toKebabCase = (str: string) => str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
-const toNormalCase = (str: string) => str.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
+const toKebabCase = (str: string) =>
+  str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+const toNormalCase = (str: string) =>
+  str.replace(/([a-z])([A-Z])/g, "$1 $2").toLowerCase();
 
 async function packageTypes(dir: URL): Promise<void> {
   let entries: Awaited<ReturnType<typeof readdir>>;
@@ -24,7 +33,7 @@ async function packageTypes(dir: URL): Promise<void> {
   const kebabName = toKebabCase(folderName);
   const normalName = toNormalCase(folderName);
   const packageName = "@css-m/" + kebabName == "packages" ? "all" : kebabName;
-  const packageVersion = await getVersion(packageName)
+  const packageVersion = await getVersion(packageName);
 
   const licensePath = new URL("License", dir);
   const packagePath = new URL("package.json", dir);
@@ -36,17 +45,19 @@ async function packageTypes(dir: URL): Promise<void> {
     await copyFile(license, licensePath);
   }
 
-
   let content = await readFile(packageJson, "utf-8");
 
   if (normalName === "packages") {
-    content = content
-      .replace("CSS definitions for xyz-normal", "All css definitions for measurements");
+    content = content.replace(
+      "CSS definitions for xyz-normal",
+      "All css definitions for measurements",
+    );
   } else {
     content = content.replace("xyz-normal", normalName);
   }
-  content = content.replace("xyz-kebab", packageName).replace('versionNumber', packageVersion);
-
+  content = content
+    .replace("xyz-kebab", packageName)
+    .replace("versionNumber", packageVersion);
 
   await writeFile(packagePath, content);
 
