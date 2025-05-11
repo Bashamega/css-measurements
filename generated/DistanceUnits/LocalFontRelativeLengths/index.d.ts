@@ -1,1 +1,1 @@
-export type LocalFontRelativeLengths = "cap" | "ch" | "em" | "ex" | "ic" | "lh"
+export type LocalFontRelativeLengths = "cap" | "ch" | "em" | "ex" | "ic" | "lh";
