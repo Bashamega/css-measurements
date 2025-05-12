@@ -37,6 +37,8 @@ async function packageTypes(dir: URL): Promise<void> {
 
   const licensePath = new URL("License", dir);
   const packagePath = new URL("package.json", dir);
+  const readmeTemplate = new URL("README.md", templatePath);
+  const readmePath = new URL("README.md", dir);
 
   // Add License if missing
   try {
@@ -45,21 +47,28 @@ async function packageTypes(dir: URL): Promise<void> {
     await copyFile(license, licensePath);
   }
 
-  let content = await readFile(packageJson, "utf-8");
-
+  // Write package.json
+  let pkgContent = await readFile(packageJson, "utf-8");
   if (normalName === "packages") {
-    content = content.replace(
+    pkgContent = pkgContent.replace(
       "CSS definitions for xyz-normal",
       "All css definitions for measurements",
     );
   } else {
-    content = content.replace("xyz-normal", normalName);
+    pkgContent = pkgContent.replace("xyz-normal", normalName);
   }
-  content = content
+  pkgContent = pkgContent
     .replace("xyz-kebab", packageName)
     .replace("versionNumber", packageVersion);
+  await writeFile(packagePath, pkgContent);
 
-  await writeFile(packagePath, content);
+  // Write README.md
+  let readmeContent = await readFile(readmeTemplate, "utf-8");
+  readmeContent = readmeContent.replace("xyz-normal", normalName);
+  readmeContent = readmeContent
+    .replace("xyz-kebab", packageName)
+    .replace("versionNumber", packageVersion);
+  await writeFile(readmePath, readmeContent);
 
   // Recurse
   for (const entry of entries) {
