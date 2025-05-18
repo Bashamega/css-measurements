@@ -31,12 +31,15 @@ async function packageTypes(dir: URL): Promise<void> {
 
   const folderName = dir.pathname.split("/").filter(Boolean).at(-1) ?? "";
   const kebabName = toKebabCase(folderName);
-  const normalName = toNormalCase(folderName);
-  const packageName = "@css-m/" + kebabName == "packages" ? "all" : kebabName;
+  const normalName =
+    folderName === "packages" ? "all" : toNormalCase(folderName);
+  const packageName = `@css-m/${kebabName === "packages" ? "all" : kebabName}`;
   const packageVersion = await getVersion(packageName);
 
   const licensePath = new URL("License", dir);
   const packagePath = new URL("package.json", dir);
+  const readmeTemplate = new URL("README.md", templatePath);
+  const readmePath = new URL("README.md", dir);
 
   // Add License if missing
   try {
@@ -45,21 +48,36 @@ async function packageTypes(dir: URL): Promise<void> {
     await copyFile(license, licensePath);
   }
 
-  let content = await readFile(packageJson, "utf-8");
-
-  if (normalName === "packages") {
-    content = content.replace(
+  // Write package.json
+  let pkgContent = await readFile(packageJson, "utf-8");
+  if (normalName === "all") {
+    pkgContent = pkgContent.replace(
       "CSS definitions for xyz-normal",
       "All css definitions for measurements",
     );
   } else {
-    content = content.replace("xyz-normal", normalName);
+    pkgContent = pkgContent.replace("xyz-normal", normalName);
   }
-  content = content
+  pkgContent = pkgContent
     .replace("xyz-kebab", packageName)
     .replace("versionNumber", packageVersion);
+  await writeFile(packagePath, pkgContent);
 
-  await writeFile(packagePath, content);
+  // Write README.md
+  let readmeContent = await readFile(readmeTemplate, "utf-8");
+  readmeContent = readmeContent
+    .replace("xyz-normal", normalName)
+    .replace("xyz-kebab", packageName)
+    .replace("versionNumber", packageVersion);
+  if (normalName === "all") {
+    readmeContent = readmeContent.replace(
+      "This package provides type-safe CSS units for xyz-normal directly from the specifications to your code.",
+      "This packge provide type-safty CSS unit for all units",
+    );
+  } else {
+    readmeContent = readmeContent.replace("xyz-normal", normalName);
+  }
+  await writeFile(readmePath, readmeContent);
 
   // Recurse
   for (const entry of entries) {
