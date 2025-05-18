@@ -65,8 +65,8 @@ async function packageTypes(dir: URL): Promise<void> {
 
   // Write README.md
   let readmeContent = await readFile(readmeTemplate, "utf-8");
-  readmeContent = readmeContent.replace("xyz-normal", normalName);
   readmeContent = readmeContent
+    .replace("xyz-normal", normalName)
     .replace("xyz-kebab", packageName)
     .replace("versionNumber", packageVersion);
   if (normalName === "all") {
