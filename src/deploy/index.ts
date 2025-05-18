@@ -31,8 +31,9 @@ async function packageTypes(dir: URL): Promise<void> {
 
   const folderName = dir.pathname.split("/").filter(Boolean).at(-1) ?? "";
   const kebabName = toKebabCase(folderName);
-  const normalName = toNormalCase(folderName);
-  const packageName = "@css-m/" + kebabName == "packages" ? "all" : kebabName;
+  const normalName =
+    folderName === "packages" ? "all" : toNormalCase(folderName);
+  const packageName = `@css-m/${kebabName === "packages" ? "all" : kebabName}`;
   const packageVersion = await getVersion(packageName);
 
   const licensePath = new URL("License", dir);
@@ -49,7 +50,7 @@ async function packageTypes(dir: URL): Promise<void> {
 
   // Write package.json
   let pkgContent = await readFile(packageJson, "utf-8");
-  if (normalName === "packages") {
+  if (normalName === "all") {
     pkgContent = pkgContent.replace(
       "CSS definitions for xyz-normal",
       "All css definitions for measurements",
@@ -68,6 +69,14 @@ async function packageTypes(dir: URL): Promise<void> {
   readmeContent = readmeContent
     .replace("xyz-kebab", packageName)
     .replace("versionNumber", packageVersion);
+  if (normalName === "all") {
+    readmeContent = readmeContent.replace(
+      "This package provides type-safe CSS units for xyz-normal directly from the specifications to your code.",
+      "This packge provide type-safty CSS unit for all units",
+    );
+  } else {
+    readmeContent = readmeContent.replace("xyz-normal", normalName);
+  }
   await writeFile(readmePath, readmeContent);
 
   // Recurse

@@ -7,7 +7,7 @@ This package provides type-safe CSS units for xyz-normal directly from the speci
 You can install this package using npm:
 
 ```bash
-npm install @types/xyz-kebab@versionNumber
+npm install xyz-kebab@versionNumber
 ```
 
 ## SemVer
