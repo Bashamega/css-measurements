@@ -1,4 +1,4 @@
-# CSS Measurements (Still in development)
+# CSS Measurements
 
 **Type-safe CSS units — straight from the spec to your code.**
 
