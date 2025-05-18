@@ -14,7 +14,18 @@ CSS Measurements is a library designed to simplify working with CSS units in a t
 - **JavaScript support**: Works seamlessly with JavaScript projects as well.
 
 ---
+## Packages List
+| Package                              | Description                                     |
+| ------------------------------------ | ----------------------------------------------- |
+| `@css-m/all`                         | All CSS definitions for measurements            |
+| `@css-m/absolute-length-units`       | CSS definitions for absolute length units       |
+| `@css-m/container-units`             | CSS definitions for container units             |
+| `@css-m/distance-units`              | CSS definitions for distance units              |
+| `@css-m/local-font-relative-lengths` | CSS definitions for local font relative lengths |
+| `@css-m/root-font-relative-lengths`  | CSS definitions for root font relative lengths  |
+| `@css-m/viewport-units`              | CSS definitions for viewport units              |
 
+---
 
 ## Why Use CSS Measurements?
 
