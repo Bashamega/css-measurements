@@ -192,7 +192,7 @@
       {
         "unit": "%",
         "descriptions": [
-          "Percentage — a relative length.",
+          "Percentage - a relative length.",
           "For most box‑model properties (width, height, margin, padding, etc.) it is resolved against the parent element’s corresponding size (usually the content box).",
           "For typographic properties (e.g., font-size, line-height) it is resolved against the parent element’s computed font size.",
           "Widely used for fluid, responsive layouts because it scales with the parent."
